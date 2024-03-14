@@ -18,11 +18,8 @@ public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
 
-    @SneakyThrows
+
     public List<InventoryResponse> isStock(List<String> skuCode) {
-        log.info("wait start");
-        Thread.sleep(10000);
-        log.info("wait end");
         return inventoryRepository.findBySkuCodeIn(skuCode).stream()
                 .map(inventory ->
                     InventoryResponse.builder().skuCode(inventory.getSkuCode())
